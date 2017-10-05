@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+    <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+    <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+    <!-- Web Font / @font-face : BEGIN -->
+	<!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
+
+    <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+    <!--[if mso]>
+        <style>
+            * {
+                font-family: sans-serif !important;
+            }
+        </style>
+    <![endif]-->
+
+    <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+    <!--[if !mso]><!-->
+        <!-- insert web font reference, eg: <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'> -->
+    <!--<![endif]-->
+
+    <!-- Web Font / @font-face : END -->
+
+	<!-- CSS Reset -->
+    <style>
+        /* What it does: Remove spaces around the email design added by some email clients. */
+        /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+        html,
+        body {
+            margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+        /* What it does: Stops email clients resizing small text. */
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+        /* What it does: Centers email on Android 4.4 */
+        div[style*="margin: 16px 0"] {
+            margin:0 !important;
+        }
+        /* What it does: Stops Outlook from adding extra spacing to tables. */
+        table,
+        td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+        /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+            margin: 0 auto !important;
+        }
+        table table table {
+            table-layout: auto;
+        }
+        /* What it does: Uses a better rendering method when resizing images in IE. */
+        img {
+            -ms-interpolation-mode:bicubic;
+        }
+        /* What it does: A work-around for email clients meddling in triggered links. */
+        *[x-apple-data-detectors],	/* iOS */
+        .x-gmail-data-detectors, 	/* Gmail */
+        .x-gmail-data-detectors *,
+        .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+            color: inherit !important;
+            text-decoration: none !important;
+            font-size: inherit !important;
+            font-family: inherit !important;
+            font-weight: inherit !important;
+            line-height: inherit !important;
+        }
+        /* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
+        .a6S {
+	        display: none !important;
+	        opacity: 0.01 !important;
+        }
+        /* If the above doesn't work, add a .g-img class to any image in question. */
+        img.g-img + div {
+	        display:none !important;
+	   	}
+        /* What it does: Prevents underlining the button text in Windows 10 */
+        .button-link {
+            text-decoration: none !important;
+        }
+        /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+        /* Create one of these media queries for each additional viewport size you'd like to fix */
+        /* Thanks to Eric Lepetit (@ericlepetitsf) for help troubleshooting */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) { /* iPhone 6 and 6+ */
+            .email-container {
+                min-width: 375px !important;
+            }
+        }
+    </style>
+
+    <!-- Progressive Enhancements -->
+    <style>
+        /* What it does: Hover styles for buttons */
+        .button-td,
+        .button-a {
+            transition: all 100ms ease-in;
+        }
+        .button-td:hover,
+        .button-a:hover {
+            background: #555555 !important;
+            border-color: #555555 !important;
+        }
+        /* Media Queries */
+        @media screen and (max-width: 600px) {
+            /* What it does: Adjust typography on small screens to improve readability */
+			.email-container p {
+				font-size: 17px !important;
+				line-height: 24px !important;
+			}
+			
+      p[class="bodycopy"] {
+      font-size: 15px !important;
+      line-height: 22px !important;
+      }
+      td[class="tdtext"] {
+      padding: 0 20px !important;
+      }
+      td[class="spacer50"] {
+      display: block !important;
+      }
+      
+      /* resize full-width images based on size */
+      img[class="fluidimagebody"] { 
+      height:auto !important; 
+      width:100% !important;
+      max-width: 600px !important;
+      margin: 0 auto !important;
+      }
+      td[class="tdimage"] {
+      width:22% !important;
+      }
+
+      /* blocks that will be hidden on mobile */
+      td[class="hidethis"] {
+      display: none !important;
+      }
+		}
+	</style>
+
+	<!-- What it does: Makes background images in 72ppi Outlook render at correct size. -->
+	<!--[if gte mso 9]>
+	<xml>
+		<o:OfficeDocumentSettings>
+			<o:AllowPNG/>
+			<o:PixelsPerInch>96</o:PixelsPerInch>
+		</o:OfficeDocumentSettings>
+	</xml>
+	<![endif]-->
+
+</head>
+<body width="100%" bgcolor="#ffffff" style="margin: 0; mso-line-height-rule: exactly;">
+	<center style="width: 100%; background: #ffffff; text-align: left;">
+
+		<!-- Visually Hidden Preheader Text : BEGIN -->
+		<div style="display:none;font-size:1px;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;mso-hide:all;font-family: sans-serif;">
+			Our Phone Evaluations can help you make a big impact.
+		</div>
+		<!-- Visually Hidden Preheader Text : END -->
+
+		<!--
+			Set the email width. Defined in two places:
+			1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 600px.
+			2. MSO tags for Desktop Windows Outlook enforce a 600px width.
+		-->
+		<div style="max-width: 600px; margin: auto;" class="email-container">
+			<!--[if mso]>
+			<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" align="center">
+			<tr>
+			<td>
+			<![endif]-->
+
+			<!-- Email Header : BEGIN -->
+			<table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+				<tr>
+					<td style="padding: 20px 0; text-align: center">
+						<a href="https://www.secretshopper.com" target="_blank">
+							<img src="https://www.secretshopper.com/images/hdr-logo.png" style="max-width: 250px;">
+						</a>
+					</td>
+				</tr>
+			</table>
+			<!-- Email Header : END -->
+
+			<!-- Email Body : BEGIN -->
+			<table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+
+				<!-- Hero Image, Flush : BEGIN -->
+				<tr>
+					<td bgcolor="#ffffff">
+						<img src="http://i.imgur.com/s85v3AK.png" width="600" height="" alt="Strengthen your managers" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
+					</td>
+				</tr>
+				<!-- Hero Image, Flush : END -->
+
+
+						<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-family: sans-serif;">								
+							<tr>
+								<td style="padding:20px 40px;">
+									<p style="text-align: left; font-size: 17px; line-height:30px; color:#000000">
+										Focus and reinforce your customer engagement strategy. Coach your managers to cultivate positive consumer experiences and build brand loyalty. Our seminars will help your managers 
+										analyze data, and get the answers they need.
+										<br><br>
+										Sights on Service 360 has the tools, and the expertise to help meet your sales and service goals.
+										<a href="https://www.secretshopper.com/services/trainingCoaching.asp" target="_blank" style="color:#002e56;">
+										Learn more on our website.
+                            		</a>
+                            		</p>								
+								</td>
+							</tr>
+							<tr>
+								<td aria-hidden="true" height="30">
+								&nbsp;
+								</td>
+							</tr>					
+						</table>
+
+               <!-- Start 2 Columns -->            
+                        <tr>
+                          <td width="100%" align="left" valign="top">
+                            <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                              <tbody>
+                                <tr bgcolor="#7ab3d4">
+                                  <td class="tdimage" width="50%" valign="top" bgcolor="#7ab3d4"><img class="fluidimagebody" style="display: block;" src="http://i.imgur.com/dYcF9SV.png" border="0" alt="" width="300"></td>
+                                  <td class="tdtext" style="padding: 0 40px 0 40px;" width="50%" valign="middle" bgcolor="#F3F4F4">
+                                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                      <tbody>
+                                        <tr>
+                                          <td height="20"></td>
+                                        </tr>
+                                        <tr>
+                                          <td style="line-height: 30px;" valign="top">
+                                            <h2 class="bodycopy" style="margin: 0; padding: 0; color: #364141; line-height: 30px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">Evaluation Tools</h2>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td height="10"></td>
+                                        </tr>
+                                        <tr>
+                                          <td style="line-height: 24px;" valign="top">
+                                            <p class="bodycopy" style="margin: 0; padding: 0; color: #364141; line-height: 24px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">We have decades of expertise in data analytics, internal assessment, and market&nbsp;research.</p>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td height="20"></td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>	                        
+                        <table>
+                        	<tr>
+                        		<td class="spacer50" height="50" style="display:none;"></td>
+                        	</tr>
+                        </table>                
+                        <tr>
+                          <td width="100%" align="left" valign="top">
+                            <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                              <tbody>
+                                <tr>
+                                  <td class="tdtext" style="padding: 0 40px 0 40px;" width="50%" valign="middle" bgcolor="#F3F4F4">
+                                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                      <tbody>
+                                        <tr>
+                                          <td height="20"></td>
+                                        </tr>
+                                        <tr>
+                                          <td style="line-height: 30px;  text-align:right;" valign="top">
+                                            <h2 class="bodycopy" style="margin: 0; padding: 0; color: #364141; line-height: 30px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">Training Details</h2>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td class="spacer10" height="10"></td>
+                                        </tr>
+                                        <tr>
+                                          <td style="line-height: 24px;  text-align:right;" valign="top">
+                                            <p class="bodycopy" style="margin: 0; padding: 0; color: #364141; line-height: 24px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">Our business experts offer training in person and web-based, done on your&nbsp;schedule.</p>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td class="spacer50" height="20"></td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                   <td class="tdimage" width="50%" valign="top" bgcolor="#e0995f"><img class="fluidimagebody" style="display: block;" src="http://i.imgur.com/8NUvFgU.png" border="0" alt="" width="300"></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>                                                
+                        <table>
+                        	<tr>
+                        		<td class="spacer50" height="50" style="display:none;"></td>
+                        	</tr>
+                        </table>                        			
+                        <tr>
+                          <td width="100%" align="left" valign="top">
+                            <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                              <tbody>
+                                <tr>
+                                  <td class="tdimage" width="50%" valign="top" bgcolor="#7b80bd"><img class="fluidimagebody" style="display: block;" src="http://i.imgur.com/B9uppy5.png" border="0" alt="" width="300"></td>
+                                  <td class="tdtext" style="padding: 0 40px 0 40px;" width="50%" valign="middle" bgcolor="#F3F4F4">
+                                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                      <tbody>
+                                        <tr>
+                                          <td height="20"></td>
+                                        </tr>
+                                        <tr>
+                                          <td style="line-height: 30px;" valign="top">
+                                            <h2 class="bodycopy" style="margin: 0; padding: 0; color: #364141; line-height: 30px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">Customized Training</h2>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td class="spacer10" height="10"></td>
+                                        </tr>
+                                        <tr>
+                                          <td style="line-height: 24px;" valign="top">
+                                            <p class="bodycopy" style="margin: 0; padding: 0; color: #364141; line-height: 24px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">Our programs are customized to meet the specific challenges our clients face. </p>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td class="spacer50" height="20"></td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>				
+                                        
+             <!-- End 2 Columns -->						
+					</td>
+				</tr>
+			</table>				
+
+				<!-- Button : BEGIN -->
+						<table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" style="margin: auto;">
+				<!-- Clear Spacer : BEGIN -->
+                            <tr>
+                              <td height="60"></td>
+                         	</tr>
+				<!-- Clear Spacer : END -->
+							<tr>
+								<td style="border-radius: 8px; background: #002e56; text-align: center;" class="button-td">
+									<a href="https://www.secretshopper.com/services/requestproposal.asp" target="_blank" style="background: #002e56; border: 15px solid #002e56; font-family: sans-serif; font-size: 17px; line-height: 1.1; text-align: center; text-decoration: none; display: block; border-radius: 8px; font-weight: bold;" class="button-a">
+										<span style="color:#ffffff;" class="button-link">&nbsp;&nbsp;&nbsp;&nbsp;Request a Quote&nbsp;&nbsp;&nbsp;&nbsp;</span>
+									</a>
+								</td>
+							</tr>
+						</table>
+				<!-- Button : END -->					
+				<!-- 1 Column Text : END -->
+
+
+			<!-- Email Body : END -->
+
+			<!-- Clear Spacer : BEGIN -->
+			<tr>
+				<td aria-hidden="true" height="60px">
+					&nbsp;
+				</td>
+			</tr>
+			<!-- Clear Spacer : END -->
+				
+			<!-- Email Footer : BEGIN -->
+			<!-- Social Media buttons : BEGIN -->
+			<table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="180" style="max-width: 680px;">		
+		    	<tr>
+		    		<td style="padding: 40px 0 0 0;">
+		    			<a href="https://www.facebook.com/secretshopper" target="_blank"><img src="https://www.secretshopper.com/images/facebook.gif" width="38" height="38" alt="Facebook" title="Facebook" border="0" /></a>
+                    </td>
+                    <td align="center" style="padding: 40px 0 0 0;">
+                    	<a href="https://twitter.com/secretshopper/" target="_blank"><img src="https://www.secretshopper.com/images/twitter.gif" width="38" height="38" alt="Twitter" title="Twitter" border="0" /></a>
+                    </td>
+                    <td align="right" style="padding: 40px 0 0 0;">
+                    	<a href="https://plus.google.com/+becomesecretshopper" target="_blank"><img src="https://www.secretshopper.com/images/googlePlus.gif" width="38" height="38" alt="Google Plus" title="Vimeo" border="0" /></a>
+                    </td>                                        
+                </tr> 
+                                                 
+			</table>
+			<!-- Social Media buttons : END -->
+			<table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="92%" style="max-width: 680px; color: #666666;">
+				<tr>
+					<td style="padding: 40px 10px; width: 100%; font-size: 12px; font-family: sans-serif; line-height:18px; text-align: center; color: #666666;">
+                        You are receiving this email because you have shown interest in Secret Shopper's services before, or
+                        Secret Shopper has launched new services which might interest you.						
+						<br>					
+						You can <a style="color: #666666; text-decoration:underline;" href="https://www.secretshopper.com/shoppers/opt_out.asp?cid=1" target="_blank">unsubscribe</a> and you will no longer receive these types of emails.
+						<br><br>
+						Secret Shopper, 620 Mendelssohn Ave N, Minneapolis, MN 55427
+					</td>
+				</tr>
+			</table>
+			<!-- Email Footer : END -->
+
+			<!--[if mso]>
+			</td>
+			</tr>
+			</table>
+			<![endif]-->
+		</div>
+
+
+    </center>
+</body>
+</html>
