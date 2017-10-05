@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+    <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+    <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+    <!-- Web Font / @font-face : BEGIN -->
+	<!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
+
+    <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+    <!--[if mso]>
+        <style>
+            * {
+                font-family: sans-serif !important;
+                
+              td[class="spacer50"] {
+              display:block !important;
+              }
+            }
+        </style>
+    <![endif]-->
+
+    <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+    <!--[if !mso]><!-->
+        <!-- insert web font reference, eg: <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'> -->
+    <!--<![endif]-->
+
+    <!-- Web Font / @font-face : END -->
+
+	<!-- CSS Reset -->
+    <style>
+        /* What it does: Remove spaces around the email design added by some email clients. */
+        /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+        html,
+        body {
+            margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+        /* What it does: Stops email clients resizing small text. */
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+        /* What it does: Centers email on Android 4.4 */
+        div[style*="margin: 16px 0"] {
+            margin:0 !important;
+        }
+        /* What it does: Stops Outlook from adding extra spacing to tables. */
+        table,
+        td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+        /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+            margin: 0 auto !important;
+        }
+        table table table {
+            table-layout: auto;
+        }
+        /* What it does: Uses a better rendering method when resizing images in IE. */
+        img {
+            -ms-interpolation-mode:bicubic;
+        }
+        /* What it does: A work-around for email clients meddling in triggered links. */
+        *[x-apple-data-detectors],	/* iOS */
+        .x-gmail-data-detectors, 	/* Gmail */
+        .x-gmail-data-detectors *,
+        .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+            color: inherit !important;
+            text-decoration: none !important;
+            font-size: inherit !important;
+            font-family: inherit !important;
+            font-weight: inherit !important;
+            line-height: inherit !important;
+        }
+        /* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
+        .a6S {
+	        display: none !important;
+	        opacity: 0.01 !important;
+        }
+        /* If the above doesn't work, add a .g-img class to any image in question. */
+        img.g-img + div {
+	        display:none !important;
+	   	}
+        /* What it does: Prevents underlining the button text in Windows 10 */
+        .button-link {
+            text-decoration: none !important;
+        }
+        /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+        /* Create one of these media queries for each additional viewport size you'd like to fix */
+        /* Thanks to Eric Lepetit (@ericlepetitsf) for help troubleshooting */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) { /* iPhone 6 and 6+ */
+            .email-container {
+                min-width: 375px !important;
+            }
+        }
+    </style>
+
+    <!-- Progressive Enhancements -->
+    <style>
+        /* What it does: Hover styles for buttons */
+        .button-td,
+        .button-a {
+            transition: all 100ms ease-in;
+        }
+        .button-td:hover,
+        .button-a:hover {
+            background: #555555 !important;
+            border-color: #555555 !important;
+        }
+        td[class="spacer50"] {
+    	display:none !important;
+    	}
+        
+        /* Media Queries */
+        @media screen and (max-width: 600px) {
+            /* What it does: Adjust typography on small screens to improve readability */
+			.email-container p {
+				font-size: 17px !important;
+				line-height: 24px !important;
+			}
+			
+      p[class="bodycopy"] {
+      font-size: 15px !important;
+      line-height: 22px !important;
+      }
+      td[class="tdtext"] {
+      padding: 10px 20px !important;
+      }
+      p[class="benefit"] {
+      font-size: 20px !important;
+      }
+      p[class="benefitnumber"] {
+      font-size: 50px !important;
+      line-height: 0px !important;
+      }
+      
+      /* resize full-width images based on size */
+      img[class="fluidimagebody"] { 
+      height:auto !important; 
+      width:100% !important;
+      max-width: 600px !important;
+      margin: 0 auto !important;
+      }
+      td[class="tdimage"] {
+      width:22% !important;
+      height:22% !important;
+      }
+      td[class="spacer50"] {
+      display:block !important;
+      }
+
+      /* blocks that will be hidden on mobile */
+      td[class="hidethis"] {
+      display: none !important;
+      }
+		}
+	</style>
+
+	<!-- What it does: Makes background images in 72ppi Outlook render at correct size. -->
+	<!--[if gte mso 9]>
+	<xml>
+		<o:OfficeDocumentSettings>
+			<o:AllowPNG/>
+			<o:PixelsPerInch>96</o:PixelsPerInch>
+		</o:OfficeDocumentSettings>
+	</xml>
+	<![endif]-->
+
+</head>
+<body width="100%" bgcolor="#ffffff" style="margin: 0; mso-line-height-rule: exactly;">
+	<center style="width: 100%; background: #ffffff; text-align: left;">
+
+		<!-- Visually Hidden Preheader Text : BEGIN -->
+		<div style="display:none;font-size:1px;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;mso-hide:all;font-family: sans-serif;">
+			Our front-line training will improve your customer experience.
+		</div>
+		<!-- Visually Hidden Preheader Text : END -->
+
+		<!--
+			Set the email width. Defined in two places:
+			1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 600px.
+			2. MSO tags for Desktop Windows Outlook enforce a 600px width.
+		-->
+		<div style="max-width: 600px; margin: auto;" class="email-container">
+			<!--[if mso]>
+			<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" align="center">
+			<tr>
+			<td>
+			<![endif]-->
+
+			<!-- Email Header : BEGIN -->
+			<table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+				<tr>
+					<td style="padding: 20px 0; text-align: center">
+						<a href="https://www.secretshopper.com" target="_blank">
+							<img src="https://www.secretshopper.com/images/hdr-logo.png" style="max-width: 250px;">
+						</a>
+					</td>
+				</tr>
+			</table>
+			<!-- Email Header : END -->
+
+			<!-- Email Body : BEGIN -->
+			<table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 600px;">
+
+				<tr bgcolor="#007070">
+					<td style="padding:10px 20px;">
+						<p class="benefit" style="text-align: center; color:#ffffff; font-family: sans-serif; font-size:30px; line-height: 120%;">
+							Improve your team with<br><b>Sights on Service - 360&nbsp;Solutions</b><br>Training, Leadership, and Development&nbsp;Programs
+						</p>
+					</td>
+				</tr>			
+				<!-- Hero Image, Flush : BEGIN -->
+				<tr>
+					<td bgcolor="#ffffff">
+						<img src="http://i.imgur.com/cF6aQ50.jpg" width="600" height="" alt="Train your front-line" border="0" align="center" style="width: 100%; max-width: 600px; height: auto; background: #dddddd; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="g-img">
+					</td>
+				</tr>
+				<!-- Hero Image, Flush : END -->
+
+
+						<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-family: sans-serif;">								
+							<tr bgcolor="#007070">
+								<td style="padding:20px 40px;">
+									<p style="text-align: left; font-size: 17px; line-height:30px; color:#ffffff">
+										What kind of customer service is your front line providing?<br>Meeting the specialized standards that represent your brand requires a team that has the skills and knowledge that are unique to your service environment.
+									</p>
+								</td>
+							</tr>
+							<tr>
+								<td style="padding:20px 40px;">
+										<p style="text-align: center; font-size: 17px; line-height:30px; color:#000000">
+										SOS - <b>360 Solutions</b> has the tools, and the expertise to help meet, and exceed your sales and service goals.
+										<br><a href="https://www.secretshopper.com/services/trainingCoaching.asp" target="_blank" style="color:#002e56;">
+										Learn more on our website.
+                            		</a>
+                            		</p>								
+								</td>
+							</tr>
+							<tr>
+								<td aria-hidden="true" height="10">
+								&nbsp;
+								</td>
+							</tr>	
+							<tr >
+								<td style="padding: 20px 0px; text-align:center;">
+									<h2 class="bodycopy" style="color: #364141; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">The Benefits from Training and Developing your Team with 360&nbsp;Solutions</h2>				
+								</td>
+							</tr>				
+						</table>
+
+               <!-- Start 2 Columns -->            
+                        <tr>
+                          <td width="100%" align="left" valign="top">
+                            <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                              <tbody>
+                                <tr bgcolor="#7ab3d4">
+                                  <td class="tdimage" width="50%" height="300" valign="middle" bgcolor="#7ab3d4" style="color: #ffffff; text-align:center; line-height: 0px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+                                  		<p class="benefit" style="font-size:30px; letter-spacing:0.6px;">Benefit</p>
+                                  		<p class="benefitnumber" style="font-size:80px; font-weight:bold;">1</p></td>
+                                  <td class="tdtext" style="padding: 0 30px 0 30px;" width="50%" valign="middle" bgcolor="#F3F4F4">
+                                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                      <tbody>
+                                        <tr>
+                                          <td style="line-height: 30px;  text-align:left;" valign="top">
+                                            <h2 class="bodycopy" style="margin: 0; padding: 0; color: #364141; line-height: 30px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">Create a Team of Experts</h2>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td style="line-height: 24px;" valign="top">
+                                            <p class="bodycopy" style="color: #364141; line-height: 24px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+                                            	Carefully trained employees will better represent your brand and meet your specialized standards.</p>
+                                          </td>
+                                        </tr>          
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>	                        
+                        <table>
+                        	<tr>
+                        		<td class="spacer50" height="50" style="display:none;"></td>
+                        	</tr>
+                        </table>                
+                        <tr>
+                          <td width="100%" align="left" valign="top">
+                            <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                              <tbody>
+                                <tr>
+                                  <td class="tdtext" style="padding: 0 30px 0 30px;" width="50%" valign="middle" bgcolor="#F3F4F4">
+                                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                      <tbody>
+                                        <tr>
+                                          <td style="line-height: 30px;  text-align:right;" valign="top">
+                                            <h2 class="bodycopy" style="margin: 0; padding: 0; color: #364141; line-height: 30px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">Improved Customer Service</h2>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td class="spacer10" height="10"></td>
+                                        </tr>
+                                        <tr>
+                                          <td style="line-height: 24px;  text-align:right;" valign="top">
+                                            <p class="bodycopy" style="margin: 0; padding: 0; color: #364141; line-height: 24px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+                                            	With everyone at their peak performance, employees will recommend your services and products more successfully.</p>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td class="spacer50" height="20"></td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                  <td class="tdimage" width="50%" height="300" valign="middle" bgcolor="#7b80bd" style="color: #ffffff; text-align:center; line-height: 0px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+                                  	<p class="benefit" style="font-size:30px; letter-spacing:0.6px;">Benefit</p>
+                                  	<p class="benefitnumber" style="font-size:80px; font-weight:bold;">2</p></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>                                                
+                        <table>
+                        	<tr>
+                        		<td class="spacer50" height="50" style="display:none;"></td>
+                        	</tr>
+                        </table>                        			
+                        <tr>
+                          <td width="100%" align="left" valign="top">
+                            <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                              <tbody>
+                                <tr>
+                                	<td class="tdimage" width="50%" height="300" valign="middle" bgcolor="#c85d5d" style="color: #ffffff; text-align:center; line-height: 0px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+                                  		<p class="benefit" style="font-size:30px; letter-spacing:0.6px;">Benefit</p>
+                                  		<p class="benefitnumber" style="font-size:80px; font-weight:bold;">3</p></td>
+                                    <td class="tdtext" style="padding: 0 30px 0 30px;" width="50%" valign="middle" bgcolor="#F3F4F4">
+                                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                      <tbody>
+                                        <tr>
+                                          <td style="line-height: 30px;" valign="top">
+                                            <h2 class="bodycopy" style="margin: 0; padding: 0; color: #364141; line-height: 30px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">Stronger Leaders Strengthen your&nbsp;Team</h2>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td class="spacer10" height="10"></td>
+                                        </tr>
+                                        <tr>
+                                          <td style="line-height: 24px;" valign="top">
+                                            <p class="bodycopy" style="margin: 0; padding: 0; color: #364141; line-height: 24px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+                                            	Identifying and empowering front-line personnel to take greater responsibility is the key to increased long term profitability.</p>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td class="spacer50" height="20"></td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>				
+                        <table>
+                        	<tr>
+                        		<td class="spacer50" height="50" style="display:none;"></td>
+                        	</tr>
+                        </table>                
+                        <tr>
+                          <td width="100%" align="left" valign="top">
+                            <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                              <tbody>
+                                <tr>
+                                  <td class="tdtext" style="padding: 0 30px 0 30px;" width="50%" valign="middle" bgcolor="#F3F4F4">
+                                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                      <tbody>
+                                        <tr>
+                                          <td style="line-height: 30px;  text-align:right;" valign="top">
+                                            <h2 class="bodycopy" style="margin: 0; padding: 0; color: #364141; line-height: 30px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">Better Leaders, Better&nbsp;Brand</h2>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td class="spacer10" height="10"></td>
+                                        </tr>
+                                        <tr>
+                                          <td style="line-height: 24px;  text-align:right;" valign="top">
+                                            <p class="bodycopy" style="margin: 0; padding: 0; color: #364141; line-height: 24px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+                                            	Recognizing and developing leaders enables you to retain their strengths, giving the best guarantee that your standards are consistently met.</p>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td class="spacer50" height="20"></td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                  <td class="tdimage" width="50%" height="300" valign="middle" bgcolor="#e0995e" style="color: #ffffff; text-align:center; line-height: 0px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">
+                                  	<p class="benefit" style="font-size:30px; letter-spacing:0.6px;">Benefit</p>
+                                  	<p class="benefitnumber" style="font-size:80px; font-weight:bold;">4</p></td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>                                        
+             <!-- End 2 Columns -->						
+					</td>
+				</tr>
+					<table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" style="margin: auto;">
+				    	<tr>
+                            <td height="10"></td>
+                        </tr>
+						<tr>
+							<td style="padding: 20px 0px; text-align:center;">
+								<h2 class="bodycopy" style="color: #364141; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">Find out how we can help you grow</h2>				
+							</td>
+						</tr>	
+					</table>			
+			</table>				
+
+				<!-- Button : BEGIN -->
+						<table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" style="margin: auto;">
+								<td style="border-radius: 8px; background: #007070; text-align: center;" class="button-td">
+									<a href="https://www.secretshopper.com/services/requestproposal.asp" target="_blank" style="background: #007070; border: 15px solid #007070; font-family: sans-serif; font-size: 17px; line-height: 1.1; text-align: center; text-decoration: none; display: block; border-radius: 8px; font-weight: bold;" class="button-a">
+										<span style="color:#ffffff;" class="button-link">&nbsp;&nbsp;&nbsp;&nbsp;Request a Quote&nbsp;&nbsp;&nbsp;&nbsp;</span>
+									</a>
+								</td>
+							</tr>
+						</table>
+				<!-- Button : END -->					
+				<!-- 1 Column Text : END -->
+
+
+			<!-- Email Body : END -->
+
+			<!-- Clear Spacer : BEGIN -->
+			<table>
+			<tr>
+				<td height="80px"></td>
+			</tr>
+			</table>
+			<!-- Clear Spacer : END -->
+				
+			<!-- Email Footer : BEGIN -->
+			<!-- Social Media buttons : BEGIN -->
+			<table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="180" style="max-width: 680px;">		
+		    	<tr>
+		    		<td style="padding: 40px 0 0 0;">
+		    			<a href="https://www.facebook.com/secretshopper" target="_blank"><img src="https://www.secretshopper.com/images/facebook.gif" width="38" height="38" alt="Facebook" title="Facebook" border="0" /></a>
+                    </td>
+                    <td align="center" style="padding: 40px 0 0 0;">
+                    	<a href="https://twitter.com/secretshopper/" target="_blank"><img src="https://www.secretshopper.com/images/twitter.gif" width="38" height="38" alt="Twitter" title="Twitter" border="0" /></a>
+                    </td>
+                    <td align="right" style="padding: 40px 0 0 0;">
+                    	<a href="https://plus.google.com/+becomesecretshopper" target="_blank"><img src="https://www.secretshopper.com/images/googlePlus.gif" width="38" height="38" alt="Google Plus" title="Vimeo" border="0" /></a>
+                    </td>                                        
+                </tr> 
+                                                 
+			</table>
+			<!-- Social Media buttons : END -->
+			<table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="92%" style="max-width: 680px; color: #666666;">
+				<tr>
+					<td style="padding: 40px 10px; width: 100%; font-size: 12px; font-family: sans-serif; line-height:18px; text-align: center; color: #666666;">
+                        You are receiving this email because you have shown interest in Secret Shopper's services before, or
+                        Secret Shopper has launched new services which might interest you.						
+						<br>					
+						You can <a style="color: #666666; text-decoration:underline;" href="https://www.secretshopper.com/shoppers/opt_out.asp?cid=1" target="_blank">unsubscribe</a> and you will no longer receive these types of emails.
+						<br><br>
+						Secret Shopper, 620 Mendelssohn Ave N, Minneapolis, MN 55427
+					</td>
+				</tr>
+			</table>
+			<!-- Email Footer : END -->
+
+			<!--[if mso]>
+			</td>
+			</tr>
+			</table>
+			<![endif]-->
+		</div>
+
+
+    </center>
+</body>
+</html>
